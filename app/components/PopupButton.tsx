@@ -1,33 +1,20 @@
-"use client"
-
 import styles from "./styles.module.css"
 import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
 import AskguruApi from "@/app/_utils/api"
-import { defaultAskguruConfiguration, defaultConfiguration } from "@/app/configuration"
 import Image from "next/image"
-import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
-export default function PopupButton() {
+export default function PopupButton({
+  configuration,
+  askguruConfiguration,
+  askguruAPI,
+}: {
+  configuration: Configuration
+  askguruConfiguration: AskguruConfiguration
+  askguruAPI: AskguruApi
+}) {
   const [isCollapsed, setIsCollapsed] = useState(true)
   const [hasInteracted, setHasInteracted] = useState(false)
-
-  const searchParams: { [id: string]: any } = {}
-  useSearchParams().forEach((value, key) => {
-    searchParams[key] = value
-  })
-  const configuration: Configuration = {
-    ...defaultConfiguration,
-    ...searchParams,
-  }
-  const askguruConfiguration: AskguruConfiguration = {
-    ...defaultAskguruConfiguration,
-    ...{ token: configuration.token },
-  }
-  // localStorage.setItem("askguru-configuration", JSON.stringify(configuration))
-  // localStorage.setItem( "askguru-api-configuration", JSON.stringify(askguruConfiguration))
-
-  const askguruAPI = new AskguruApi({ askguruConfiguration })
 
   useEffect(() => {
     askguruAPI.logEvent({ eventType: "POPUP_SEEN" })
@@ -44,8 +31,8 @@ export default function PopupButton() {
 
   if (!configuration.token) return <h1>PNH</h1>
 
-  // console.log(configuration)
-  // console.log(askguruConfiguration)
+  console.log(configuration)
+  console.log(askguruConfiguration)
 
   return (
     <>
