@@ -1,6 +1,6 @@
+import { AskguruConfiguration, EventType, LikeStatus } from "@/app/_interfaces"
 import axios from "axios"
 import { EventSourcePolyfill } from "event-source-polyfill"
-import { AskguruConfiguration, EventType, LikeStatus } from "@/app/_interfaces"
 import qs from "qs"
 
 export default class AskguruApi {

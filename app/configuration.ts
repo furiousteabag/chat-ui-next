@@ -1,4 +1,4 @@
-import { Configuration, AskguruConfiguration } from "@/app/_interfaces"
+import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
 
 export const defaultConfiguration: Configuration = {
   token: "",

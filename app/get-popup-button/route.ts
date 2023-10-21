@@ -1,8 +1,6 @@
-import { Configuration } from "@/app/_interfaces"
-
-import { NextRequest } from "next/server"
-
 import { defaultConfiguration } from "../configuration"
+import { Configuration } from "@/app/_interfaces"
+import { NextRequest } from "next/server"
 
 export async function GET(req: NextRequest) {
   const configurationCookie = req.cookies.get("configuration")

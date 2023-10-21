@@ -1,12 +1,12 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useSearchParams } from "next/navigation"
-import Image from "next/image"
-import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
-import { defaultAskguruConfiguration, defaultConfiguration } from "@/app/configuration"
 import styles from "./styles.module.css"
+import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
 import AskguruApi from "@/app/_utils/api"
+import { defaultAskguruConfiguration, defaultConfiguration } from "@/app/configuration"
+import Image from "next/image"
+import { useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export default function PopupButton() {
   const [isCollapsed, setIsCollapsed] = useState(true)
