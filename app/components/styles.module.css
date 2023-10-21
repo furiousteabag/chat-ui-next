@@ -1,0 +1,15 @@
+.wrapper {
+  position: fixed;
+  bottom: 88px;
+  right: 16px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+  max-height: 650px;
+  max-width: 450px;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  transition: 0.25s ease-in-out;
+  border-radius: 16px;
+  overflow: hidden;
+  display: block;
+}
