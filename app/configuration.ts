@@ -17,6 +17,6 @@ export const defaultAskguruConfiguration: AskguruConfiguration = {
   token: "",
   apiUrl: "https://api.askguru.ai/",
   apiVersion: "v2",
-  sourcePattern: "{ *doc_idx *: *([^}]*)}",
   streamGetAnswer: true,
+  sourcePattern: "{ *doc_idx *: *([^}]*)}",
 }

@@ -18,8 +18,8 @@ export interface AskguruConfiguration {
   token: string
   apiUrl: string
   apiVersion: AskguruApiVersion
-  sourcePattern: string
   streamGetAnswer: boolean
+  sourcePattern: string
 }
 
 type Role = "system" | "user" | "assistant"
