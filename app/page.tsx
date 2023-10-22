@@ -5,8 +5,11 @@ import AskguruApi from "./_utils/api"
 import PopupButton from "./components/PopupButton"
 import { defaultAskguruConfiguration, defaultConfiguration } from "./configuration"
 import { useSearchParams } from "next/navigation"
+import { useState } from "react"
 
 export default function Home() {
+  const [isCollapsed, setIsCollapsed] = useState(true)
+
   const searchParams: { [id: string]: any } = {}
   useSearchParams().forEach((value, key) => {
     searchParams[key] = value
@@ -26,5 +29,16 @@ export default function Home() {
 
   const askguruAPI = new AskguruApi({ askguruConfiguration })
 
-  return configuration.token && <PopupButton configuration={configuration} askguruAPI={askguruAPI} />
+  return (
+    <div className="askguruApp">
+      {configuration.token && (
+        <PopupButton
+          configuration={configuration}
+          askguruAPI={askguruAPI}
+          isCollapsed={isCollapsed}
+          setIsCollapsed={setIsCollapsed}
+        />
+      )}
+    </div>
+  )
 }

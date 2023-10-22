@@ -1,5 +1,5 @@
-import styles from "./styles.module.css"
-import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
+import styles from "./styles-popup-button.module.css"
+import { Configuration } from "@/app/_interfaces"
 import AskguruApi from "@/app/_utils/api"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -7,11 +7,14 @@ import { useEffect, useState } from "react"
 export default function PopupButton({
   configuration,
   askguruAPI,
+  isCollapsed,
+  setIsCollapsed,
 }: {
   configuration: Configuration
   askguruAPI: AskguruApi
+  isCollapsed: boolean
+  setIsCollapsed: (value: boolean) => void
 }) {
-  const [isCollapsed, setIsCollapsed] = useState(true)
   const [hasInteracted, setHasInteracted] = useState(true)
 
   useEffect(() => {
