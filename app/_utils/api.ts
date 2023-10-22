@@ -4,10 +4,14 @@ import { EventSourcePolyfill } from "event-source-polyfill"
 import qs from "qs"
 
 export default class AskguruApi {
-  private CONFIG: AskguruConfiguration
+  private _config: AskguruConfiguration
 
   constructor({ askguruConfiguration }: { askguruConfiguration: AskguruConfiguration }) {
-    this.CONFIG = askguruConfiguration
+    this._config = askguruConfiguration
+  }
+
+  get sourcePattern(): string {
+    return this._config.sourcePattern
   }
 
   private async createApiRequest({
@@ -25,10 +29,10 @@ export default class AskguruApi {
     data ||= {}
     if (params.stream) {
       const queryString = qs.stringify(params, { arrayFormat: "repeat" })
-      const eventSourceUrl = `${this.CONFIG.apiUrl}${this.CONFIG.apiVersion}${route}?${queryString}`
+      const eventSourceUrl = `${this._config.apiUrl}${this._config.apiVersion}${route}?${queryString}`
       const eventSource = new EventSourcePolyfill(eventSourceUrl, {
         headers: {
-          Authorization: "Bearer " + this.CONFIG.token,
+          Authorization: "Bearer " + this._config.token,
         },
       })
 
@@ -36,9 +40,9 @@ export default class AskguruApi {
     } else {
       const response = await axios({
         method: method,
-        url: this.CONFIG.apiUrl + this.CONFIG.apiVersion + route,
+        url: this._config.apiUrl + this._config.apiVersion + route,
         headers: {
-          Authorization: "Bearer " + this.CONFIG.token,
+          Authorization: "Bearer " + this._config.token,
           "Content-Type": "application/json",
           accept: "application/json",
         },
@@ -72,7 +76,7 @@ export default class AskguruApi {
       params: {
         collections: collections,
         query: query,
-        stream: this.CONFIG.streamGetAnswer,
+        stream: this._config.streamGetAnswer,
       },
     })
   }
