@@ -6,11 +6,9 @@ import { useEffect, useState } from "react"
 
 export default function PopupButton({
   configuration,
-  askguruConfiguration,
   askguruAPI,
 }: {
   configuration: Configuration
-  askguruConfiguration: AskguruConfiguration
   askguruAPI: AskguruApi
 }) {
   const [isCollapsed, setIsCollapsed] = useState(true)
@@ -31,7 +29,7 @@ export default function PopupButton({
   }
 
   console.log(configuration)
-  console.log(askguruConfiguration)
+  console.log(askguruAPI.sourcePattern)
 
   return (
     <button
