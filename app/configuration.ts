@@ -2,10 +2,11 @@ import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
 
 export const defaultConfiguration: Configuration = {
   token: "",
-  color: "FFFFFF",
-  popupIcon: "https://i.ibb.co/Smdd1Xc/clickhelp-logo.png",
-  popupMessage: "Hi bro",
-  addUnreadDot: false,
+  color: "15BE6C",
+  // popupIcon: "https://i.ibb.co/Smdd1Xc/clickhelp-logo.png",
+  popupIcon: "/chat-icon-askguru.svg",
+  popupMessage: "Try <b>AI-powered</b> search!",
+  addUnreadDot: true,
   whitelabel: true,
   lang: "en-US",
   windowHeading: "Chat with AI Assistant",
