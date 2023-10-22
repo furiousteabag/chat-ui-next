@@ -1,9 +1,9 @@
-type Lang = "en-US" | "ru-RU"
+type Locale = "en-US" | "ru-RU"
 
 export interface Configuration {
   token: string
   color: string
-  lang: Lang
+  lang: Locale
   whitelabel: boolean
   popupIcon: string
   popupMessage: string
@@ -34,3 +34,14 @@ export type Chat = Message[]
 export type EventType = "TEST" | "POPUP_SEEN" | "POPUP_CALLED" | "POPUP_NO_ANSWER_CLIENT" | "POPUP_NO_ANSWER_SERVER"
 
 export type LikeStatus = "good_answer" | "wrong_answer"
+
+interface Localization {
+  clear: string
+  resize: string
+  send: string
+  inputPlaceholder: string
+}
+
+export type Localizations = {
+  [key in Locale]: Localization
+}
