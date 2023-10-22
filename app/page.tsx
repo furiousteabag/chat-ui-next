@@ -27,6 +27,8 @@ export default function Home() {
   const askguruAPI = new AskguruApi({ askguruConfiguration })
 
   return (
-    <PopupButton configuration={configuration} askguruConfiguration={askguruConfiguration} askguruAPI={askguruAPI} />
+    configuration.token && (
+      <PopupButton configuration={configuration} askguruConfiguration={askguruConfiguration} askguruAPI={askguruAPI} />
+    )
   )
 }
