@@ -24,9 +24,10 @@ export interface AskguruConfiguration {
 
 type Role = "system" | "user" | "assistant"
 
-export interface Message {
+export interface MessageType {
   role: Role
   content: string
+  requestId?: string
 }
 
 export type EventType = "TEST" | "POPUP_SEEN" | "POPUP_CALLED" | "POPUP_NO_ANSWER_CLIENT" | "POPUP_NO_ANSWER_SERVER"
@@ -43,3 +44,5 @@ interface Localization {
 export type Localizations = {
   [key in Locale]: Localization
 }
+
+export type ReactionType = "LIKE" | "DISLIKE"
