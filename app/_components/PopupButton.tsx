@@ -31,9 +31,6 @@ export default function PopupButton({
     askguruAPI.logEvent({ eventType: "POPUP_CALLED" })
   }
 
-  console.log(configuration)
-  console.log(askguruAPI.sourcePattern)
-
   return (
     <button
       className={styles.button}
