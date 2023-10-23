@@ -21,7 +21,7 @@ export default function Home() {
 
   const askguruConfiguration: AskguruConfiguration = {
     ...defaultAskguruConfiguration,
-    ...{ token: configuration.token },
+    token: configuration.token,
   }
 
   // localStorage.setItem("askguru-configuration", JSON.stringify(configuration))
