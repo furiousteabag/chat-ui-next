@@ -1,9 +1,9 @@
 "use client"
 
-import { AskguruConfiguration, Configuration } from "./_interfaces"
-import AskguruApi from "./_lib/api"
-import PopupButton from "./components/PopupButton"
-import { defaultAskguruConfiguration, defaultConfiguration } from "./configuration"
+import PopupButton from "@/app/_components/PopupButton"
+import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
+import AskguruApi from "@/app/_lib/api"
+import { defaultAskguruConfiguration, defaultConfiguration } from "@/app/configuration"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react"
 
