@@ -17,16 +17,14 @@ export default class AskguruApi {
   private async createApiRequest({
     method,
     route,
-    params,
-    data,
+    params = {},
+    data = {},
   }: {
     method: "GET" | "POST"
     route: string
     params?: { [k: string]: any }
     data?: { [k: string]: any }
   }) {
-    params ||= {}
-    data ||= {}
     if (params.stream) {
       const queryString = qs.stringify(params, { arrayFormat: "repeat" })
       const eventSourceUrl = `${this._config.apiUrl}${this._config.apiVersion}${route}?${queryString}`
@@ -68,8 +66,7 @@ export default class AskguruApi {
     })
   }
 
-  public async getAnswer({ query, collections }: { query: string; collections?: string[] }) {
-    collections ||= [""]
+  public async getAnswer({ query, collections = [""] }: { query: string; collections?: string[] }) {
     return this.createApiRequest({
       method: "GET",
       route: "/collections/answer",
