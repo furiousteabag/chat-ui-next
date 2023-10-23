@@ -24,12 +24,10 @@ export interface AskguruConfiguration {
 
 type Role = "system" | "user" | "assistant"
 
-interface Message {
+export interface Message {
   role: Role
   content: string
 }
-
-export type Chat = Message[]
 
 export type EventType = "TEST" | "POPUP_SEEN" | "POPUP_CALLED" | "POPUP_NO_ANSWER_CLIENT" | "POPUP_NO_ANSWER_SERVER"
 
