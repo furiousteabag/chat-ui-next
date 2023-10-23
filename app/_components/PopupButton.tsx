@@ -37,7 +37,13 @@ export default function PopupButton({
       style={{ backgroundColor: "#" + configuration.color }}
       onClick={() => handleClick()}
     >
-      <Image alt="" src={isCollapsed ? configuration.popupIcon : "/chevron.svg"} width={64} height={64} />
+      <Image
+        alt=""
+        src={isCollapsed ? configuration.popupIcon : "/chevron.svg"}
+        width={64}
+        height={64}
+        priority={true}
+      />
       {configuration.addUnreadDot && !hasInteracted && <div className={styles.unreadDot} />}
       {configuration.popupMessage && !hasInteracted && (
         <div className={styles.popupWidget} dangerouslySetInnerHTML={{ __html: configuration.popupMessage }} />
