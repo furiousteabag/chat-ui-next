@@ -5,7 +5,7 @@ import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
 import AskguruApi from "@/app/_lib/api"
 import { defaultAskguruConfiguration, defaultConfiguration } from "@/app/configuration"
 import { useSearchParams } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function Home() {
   const [isCollapsed, setIsCollapsed] = useState(true)
@@ -24,8 +24,9 @@ export default function Home() {
     token: configuration.token,
   }
 
-  // localStorage.setItem("askguru-configuration", JSON.stringify(configuration))
-  // localStorage.setItem( "askguru-api-configuration", JSON.stringify(askguruConfiguration))
+  useEffect(() => {
+    console.log("AskGuru chat pop-up configuration:", configuration)
+  }, [])
 
   const askguruAPI = new AskguruApi({ askguruConfiguration })
 
