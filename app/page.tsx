@@ -1,5 +1,6 @@
 "use client"
 
+import Chat from "@/app/_components/Chat"
 import PopupButton from "@/app/_components/PopupButton"
 import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
 import AskguruApi from "@/app/_lib/api"
@@ -10,7 +11,7 @@ import { useEffect, useState } from "react"
 export default function Home() {
   const [isCollapsed, setIsCollapsed] = useState(true)
 
-  const searchParams: { [id: string]: any } = {}
+  const searchParams: { [key: string]: any } = {}
   useSearchParams().forEach((value, key) => {
     searchParams[key] = value
   })
@@ -39,6 +40,9 @@ export default function Home() {
           isCollapsed={isCollapsed}
           setIsCollapsed={setIsCollapsed}
         />
+      )}
+      {configuration.token && !isCollapsed && (
+        <Chat configuration={configuration} askguruAPI={askguruAPI} setIsCollapsed={setIsCollapsed} />
       )}
     </div>
   )
