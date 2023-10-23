@@ -1,4 +1,4 @@
-import styles from "./styles-popup-button.module.css"
+import styles from "./styles.module.css"
 import { Configuration } from "@/app/_interfaces"
 import AskguruApi from "@/app/_lib/api"
 import Image from "next/image"
@@ -39,7 +39,7 @@ export default function PopupButton({
     >
       <Image
         alt=""
-        src={isCollapsed ? configuration.popupIcon : "/chevron.svg"}
+        src={isCollapsed ? configuration.popupIcon : "/images/popup/chevron.svg"}
         width={64}
         height={64}
         priority={true}
