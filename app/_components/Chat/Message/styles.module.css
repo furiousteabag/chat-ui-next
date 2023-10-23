@@ -1,0 +1,42 @@
+.askguru-message-container {
+  width: 100%;
+  height: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.askguru-message-container.from-user {
+  justify-content: flex-end;
+}
+
+.askguru-message-container.from-user .askguru-message {
+  color: white;
+}
+
+.message {
+  border-radius: 8px;
+  max-width: 80%;
+  width: fit-content;
+  margin-left: 8px;
+  margin-right: 8px;
+  background-color: #fff;
+  color: #333;
+  padding: 8px 12px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.messageRating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: flex-start;
+}
