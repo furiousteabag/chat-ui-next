@@ -1,4 +1,4 @@
-import { AskguruConfiguration, EventType, LikeStatus } from "@/app/_interfaces"
+import { AskguruConfiguration, EventType, LikeStatus, MessageType } from "@/app/_interfaces"
 import axios from "axios"
 import { EventSourcePolyfill } from "event-source-polyfill"
 import qs from "qs"
@@ -14,6 +14,23 @@ export default class AskguruApi {
     return this._config.sourcePattern
   }
 
+  public getAnswer({ chat, collections = [] }: { chat: MessageType[]; collections?: string[] }): EventSourcePolyfill {
+    const route = "/collections/answer"
+    const params = {
+      chat: JSON.stringify(chat),
+      collections: collections,
+      stream: this._config.streamGetAnswer,
+    }
+    const queryString = qs.stringify(params, { arrayFormat: "repeat" })
+    const eventSourceUrl = `${this._config.apiUrl}${this._config.apiVersion}${route}?${queryString}`
+    const eventSource = new EventSourcePolyfill(eventSourceUrl, {
+      headers: {
+        Authorization: "Bearer " + this._config.token,
+      },
+    })
+    return eventSource
+  }
+
   private async createApiRequest({
     method,
     route,
@@ -25,34 +42,22 @@ export default class AskguruApi {
     params?: { [k: string]: any }
     data?: { [k: string]: any }
   }) {
-    if (params.stream) {
-      const queryString = qs.stringify(params, { arrayFormat: "repeat" })
-      const eventSourceUrl = `${this._config.apiUrl}${this._config.apiVersion}${route}?${queryString}`
-      const eventSource = new EventSourcePolyfill(eventSourceUrl, {
-        headers: {
-          Authorization: "Bearer " + this._config.token,
-        },
-      })
-
-      return eventSource
-    } else {
-      const response = await axios({
-        method: method,
-        url: this._config.apiUrl + this._config.apiVersion + route,
-        headers: {
-          Authorization: "Bearer " + this._config.token,
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-        params,
-        data,
-        paramsSerializer: (params) => {
-          return qs.stringify(params, { arrayFormat: "repeat" })
-        },
-        timeout: 60000,
-      })
-      return response.data
-    }
+    const response = await axios({
+      method: method,
+      url: this._config.apiUrl + this._config.apiVersion + route,
+      headers: {
+        Authorization: "Bearer " + this._config.token,
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+      params,
+      data,
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: "repeat" })
+      },
+      timeout: 60000,
+    })
+    return response
   }
 
   public async logEvent({ eventType, eventContext }: { eventType: EventType; eventContext?: { [key: string]: any } }) {
@@ -62,18 +67,6 @@ export default class AskguruApi {
       data: {
         type: eventType,
         context: eventContext,
-      },
-    })
-  }
-
-  public async getAnswer({ query, collections = [""] }: { query: string; collections?: string[] }) {
-    return this.createApiRequest({
-      method: "GET",
-      route: "/collections/answer",
-      params: {
-        collections: collections,
-        query: query,
-        stream: this._config.streamGetAnswer,
       },
     })
   }
