@@ -24,7 +24,7 @@ export default function PopupButton({
     }
   }, [])
 
-  function handleClick() {
+  function handleClick(): void {
     setIsCollapsed(!isCollapsed)
     setHasInteracted(true)
     localStorage.setItem("askguru-has-interacted", "true")
