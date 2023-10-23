@@ -1,7 +1,7 @@
 "use client"
 
 import { AskguruConfiguration, Configuration } from "./_interfaces"
-import AskguruApi from "./_utils/api"
+import AskguruApi from "./_lib/api"
 import PopupButton from "./components/PopupButton"
 import { defaultAskguruConfiguration, defaultConfiguration } from "./configuration"
 import { useSearchParams } from "next/navigation"

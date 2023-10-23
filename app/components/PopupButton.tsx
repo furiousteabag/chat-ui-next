@@ -1,6 +1,6 @@
 import styles from "./styles-popup-button.module.css"
 import { Configuration } from "@/app/_interfaces"
-import AskguruApi from "@/app/_utils/api"
+import AskguruApi from "@/app/_lib/api"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
