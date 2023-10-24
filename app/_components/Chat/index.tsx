@@ -200,6 +200,7 @@ export default function Chat({
         isLoading={isLoading}
         onSubmitUserMessage={handleSubmitUserMessage}
         onResizeClick={handleResizeClick}
+        isMobile={isMobile}
       />
       {!configuration.whitelabel && <Footer />}
     </div>

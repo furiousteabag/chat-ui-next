@@ -10,6 +10,7 @@ export default function Compose({
   isLoading,
   onResizeClick,
   onSubmitUserMessage,
+  isMobile,
 }: {
   configuration: Configuration
   composeValue: string
@@ -17,18 +18,21 @@ export default function Compose({
   isLoading: boolean
   onResizeClick: () => void
   onSubmitUserMessage: (event: FormEvent<HTMLFormElement>) => void
+  isMobile: boolean
 }) {
   return (
     <div className="askguru-compose">
-      <button
-        aria-label={localizations[configuration.lang].resize}
-        className="askguru-resize"
-        id="askguru-resize"
-        onClick={() => onResizeClick()}
-      >
-        <Image alt="" src="/images/chat/message/compose-resize.svg" width={18} height={18} />
-        <div className="askguru-tooltip-top">{localizations[configuration.lang].resize}</div>
-      </button>
+      {!isMobile && (
+        <button
+          aria-label={localizations[configuration.lang].resize}
+          className="askguru-resize"
+          id="askguru-resize"
+          onClick={() => onResizeClick()}
+        >
+          <Image alt="" src="/images/chat/message/compose-resize.svg" width={18} height={18} />
+          <div className="askguru-tooltip-top">{localizations[configuration.lang].resize}</div>
+        </button>
+      )}
       <form style={{ display: "flex", gap: "8px", width: "100%" }} onSubmit={(event) => onSubmitUserMessage(event)}>
         <input
           type="text"
