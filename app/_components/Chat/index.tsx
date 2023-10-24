@@ -4,17 +4,18 @@ import Header from "./Header"
 import Message from "./Message"
 import { Configuration, MessageType } from "@/app/_interfaces"
 import AskguruApi from "@/app/_lib/api"
-import localizations from "@/app/_lib/localization"
 import { FormEvent, useEffect, useRef, useState } from "react"
 
 export default function Chat({
   configuration,
   askguruAPI,
   setIsCollapsed,
+  isMobile,
 }: {
   configuration: Configuration
   askguruAPI: AskguruApi
   setIsCollapsed: (value: boolean) => void
+  isMobile: boolean
 }) {
   const [messages, setMessages] = useState<MessageType[]>([])
   const [composeValue, setComposeValue] = useState("")
@@ -46,6 +47,10 @@ export default function Chat({
   function handleClearConversation() {
     localStorage.setItem("askguru-chat-history", JSON.stringify(messagesInitialState))
     setMessages(messagesInitialState)
+  }
+
+  function handleCollapseButtonClick() {
+    setIsCollapsed(true)
   }
 
   function handleResizeClick() {
@@ -166,7 +171,12 @@ export default function Chat({
 
   return (
     <div className="askguru-container">
-      <Header configuration={configuration} onClearButtonClick={handleClearConversation} />
+      <Header
+        configuration={configuration}
+        onClearButtonClick={handleClearConversation}
+        isMobile={isMobile}
+        onCollapseButtonClick={handleCollapseButtonClick}
+      />
       <div className="askguru-content">
         {messages.map((message, index) => {
           return (

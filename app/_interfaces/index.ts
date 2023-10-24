@@ -36,6 +36,7 @@ export type LikeStatus = "good_answer" | "wrong_answer"
 
 interface Localization {
   clear: string
+  collapse: string
   resize: string
   send: string
   inputPlaceholder: string

@@ -8,16 +8,15 @@ import { defaultAskguruConfiguration, defaultConfiguration } from "@/app/configu
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
+const mobileWindowWidthThreshold = 450
+
 export default function Home() {
   const [isCollapsed, setIsCollapsed] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
 
-  const searchParams: { [key: string]: any } = {}
-  useSearchParams().forEach((value, key) => {
-    searchParams[key] = value
-  })
   const configuration: Configuration = {
     ...defaultConfiguration,
-    ...searchParams,
+    ...Object.fromEntries(useSearchParams()),
   }
 
   const askguruConfiguration: AskguruConfiguration = {
@@ -25,15 +24,25 @@ export default function Home() {
     token: configuration.token,
   }
 
+  const askguruAPI = new AskguruApi({ askguruConfiguration })
+
+  function handleResize() {
+    setIsMobile(window.innerWidth < mobileWindowWidthThreshold)
+  }
+
   useEffect(() => {
     console.log("AskGuru chat pop-up configuration:", configuration)
-  }, [])
 
-  const askguruAPI = new AskguruApi({ askguruConfiguration })
+    handleResize()
+    window.addEventListener("resize", () => handleResize())
+    return () => {
+      window.removeEventListener("resize", () => handleResize())
+    }
+  }, [])
 
   return (
     <div className="askguruApp">
-      {configuration.token && (
+      {configuration.token && (!isMobile || isCollapsed) && (
         <PopupButton
           configuration={configuration}
           askguruAPI={askguruAPI}
@@ -42,7 +51,12 @@ export default function Home() {
         />
       )}
       {configuration.token && !isCollapsed && (
-        <Chat configuration={configuration} askguruAPI={askguruAPI} setIsCollapsed={setIsCollapsed} />
+        <Chat
+          configuration={configuration}
+          askguruAPI={askguruAPI}
+          setIsCollapsed={setIsCollapsed}
+          isMobile={isMobile}
+        />
       )}
     </div>
   )

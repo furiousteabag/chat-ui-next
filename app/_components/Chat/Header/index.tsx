@@ -6,9 +6,13 @@ import Image from "next/image"
 export default function Header({
   configuration,
   onClearButtonClick,
+  isMobile,
+  onCollapseButtonClick,
 }: {
   configuration: Configuration
   onClearButtonClick: () => void
+  isMobile: boolean
+  onCollapseButtonClick: () => void
 }) {
   return (
     <div className="askguru-header">
@@ -27,10 +31,16 @@ export default function Header({
           <Image alt="" src="/images/chat/header/refresh-icon.svg" height={18} width={18} />
           <div className={styles.tooltip}>{localizations[configuration.lang].clear}</div>
         </button>
-        {/* <button className="askguru-small-btn askguru-ai-close" id="askguru-collapse" onClick={() => handleClose()}> */}
-        {/*   <Image alt="" src="/images/chat/header/close-icon.svg" /> */}
-        {/*   <div className="askguru-tooltip">Collapse</div> */}
-        {/* </button> */}
+        {isMobile && (
+          <button
+            className="askguru-small-btn askguru-ai-close"
+            id="askguru-collapse"
+            onClick={() => onCollapseButtonClick()}
+          >
+            <Image alt="" src="/images/chat/header/close-icon.svg" height={18} width={18} />
+            <div className={styles.tooltip}>{localizations[configuration.lang].collapse}</div>
+          </button>
+        )}
       </div>
     </div>
   )
