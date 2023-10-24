@@ -40,6 +40,7 @@ interface Localization {
   resize: string
   send: string
   inputPlaceholder: string
+  errorMessage: string
 }
 
 export type Localizations = {

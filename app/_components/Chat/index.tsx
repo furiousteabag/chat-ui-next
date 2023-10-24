@@ -4,6 +4,7 @@ import Header from "./Header"
 import Message from "./Message"
 import { Configuration, MessageType } from "@/app/_interfaces"
 import AskguruApi from "@/app/_lib/api"
+import localizations from "@/app/_lib/localization"
 import { FormEvent, useEffect, useRef, useState } from "react"
 
 export default function Chat({
@@ -160,6 +161,11 @@ export default function Chat({
       }
     })
     answerStream.addEventListener("error", (_event) => {
+      if (!completeAnswer) {
+        let newMessages: MessageType[] = [...messages]
+        newMessages[messages.length - 1].content = localizations[configuration.lang].errorMessage
+        setMessages([...newMessages])
+      }
       setIsLoading(false)
       answerStream.close()
       localStorage.setItem("askguru-chat-history", JSON.stringify(messages))
