@@ -1,3 +1,4 @@
+import styles from "./styles.module.css"
 import { Configuration } from "@/app/_interfaces"
 import localizations from "@/app/_lib/localization"
 import Image from "next/image"
@@ -21,16 +22,17 @@ export default function Compose({
   isMobile: boolean
 }) {
   return (
-    <div className="askguru-compose">
+    <div className={styles.compose}>
       {!isMobile && (
         <button
           aria-label={localizations[configuration.lang].resize}
-          className="askguru-resize"
-          id="askguru-resize"
+          className="small-btn"
           onClick={() => onResizeClick()}
         >
-          <Image alt="" src="/images/chat/message/compose-resize.svg" width={18} height={18} />
-          <div className="askguru-tooltip-top">{localizations[configuration.lang].resize}</div>
+          <Image alt="" src="/images/chat/message/compose-resize.svg" width={24} height={24} />
+          <div className="tooltip" style={{ bottom: 25 }}>
+            {localizations[configuration.lang].resize}
+          </div>
         </button>
       )}
       <form style={{ display: "flex", gap: "8px", width: "100%" }} onSubmit={(event) => onSubmitUserMessage(event)}>
@@ -39,15 +41,18 @@ export default function Compose({
           value={composeValue}
           onChange={(e) => setComposeValue(e.target.value)}
           placeholder={localizations[configuration.lang].inputPlaceholder}
-        ></input>
+          className={styles.input}
+        />
         <button
           aria-label={localizations[configuration.lang].send}
           type="submit"
           disabled={isLoading}
-          className="askguru-submit-btn"
+          className="small-btn"
         >
-          <div className="askguru-tooltip-top">{localizations[configuration.lang].send}</div>
-          <Image alt="" src="/images/chat/message/compose-send.svg" width={18} height={18} />
+          <Image alt="" src="/images/chat/message/compose-send.svg" width={28} height={28} />
+          <div className="tooltip" style={{ bottom: 40 }}>
+            {localizations[configuration.lang].send}
+          </div>
         </button>
       </form>
     </div>
