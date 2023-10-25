@@ -9,19 +9,18 @@ export default function PopupButton({
   askguruAPI,
   isCollapsed,
   setIsCollapsed,
+  hasInteracted,
+  setHasInteracted,
 }: {
   configuration: Configuration
   askguruAPI: AskguruApi
   isCollapsed: boolean
   setIsCollapsed: (value: boolean) => void
+  hasInteracted: boolean
+  setHasInteracted: (value: boolean) => void
 }) {
-  const [hasInteracted, setHasInteracted] = useState(true)
-
   useEffect(() => {
     askguruAPI.logEvent({ eventType: "POPUP_SEEN" })
-    if (!localStorage.getItem("askguru-has-interacted")) {
-      setHasInteracted(false)
-    }
   }, [])
 
   function handleClick(): void {

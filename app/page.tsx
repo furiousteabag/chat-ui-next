@@ -12,6 +12,7 @@ const mobileWindowWidthThreshold = 450
 
 export default function Home() {
   const [isCollapsed, setIsCollapsed] = useState(true)
+  const [hasInteracted, setHasInteracted] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
 
   const configuration: Configuration = {
@@ -33,6 +34,10 @@ export default function Home() {
   useEffect(() => {
     console.log("AskGuru chat pop-up configuration:", configuration)
 
+    if (!localStorage.getItem("askguru-has-interacted")) {
+      setHasInteracted(false)
+    }
+
     handleResize()
     window.addEventListener("resize", () => handleResize())
     return () => {
@@ -42,12 +47,14 @@ export default function Home() {
 
   return (
     <>
-      {configuration.token && (!isMobile || isCollapsed) && (
+      {configuration.token && (isCollapsed || !isMobile) && (
         <PopupButton
           configuration={configuration}
           askguruAPI={askguruAPI}
           isCollapsed={isCollapsed}
           setIsCollapsed={setIsCollapsed}
+          hasInteracted={hasInteracted}
+          setHasInteracted={setHasInteracted}
         />
       )}
       {configuration.token && !isCollapsed && (
