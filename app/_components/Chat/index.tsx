@@ -173,7 +173,7 @@ export default function Chat({
         isMobile={isMobile}
         onCollapseButtonClick={handleCollapseButtonClick}
       />
-      <div className="askguru-content">
+      <div className={styles.content}>
         {messages.map((message, index) => {
           return (
             <Message

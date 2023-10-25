@@ -1,4 +1,4 @@
-.askguru-message-container {
+.messageContainer {
   width: 100%;
   height: auto;
   margin-top: 8px;
@@ -6,15 +6,6 @@
   background-color: transparent;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-}
-
-.askguru-message-container.from-user {
-  justify-content: flex-end;
-}
-
-.askguru-message-container.from-user .askguru-message {
-  color: white;
 }
 
 .message {

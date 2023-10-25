@@ -52,10 +52,17 @@ export default function Message({
   }, [])
 
   return (
-    <div className={message.role === "assistant" ? "askguru-message-container" : "askguru-message-container from-user"}>
+    <div
+      className={styles.messageContainer}
+      style={{
+        justifyContent: message.role === "assistant" ? "flex-start" : "flex-end",
+      }}
+    >
       <div
         className={styles.message}
-        style={message.role !== "assistant" ? { backgroundColor: selectedColor, cursor: "default" } : {}}
+        style={
+          message.role !== "assistant" ? { backgroundColor: selectedColor, cursor: "default", color: "white" } : {}
+        }
       >
         <div dangerouslySetInnerHTML={{ __html: marked(message.content) }} />
         {message.role === "assistant" && isLoading && isLast && <TripleDots />}

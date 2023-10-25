@@ -1,9 +1,11 @@
+import styles from "./styles.module.css"
+
 export default function TripleDots() {
   return (
-    <div className="askguru-progress">
-      <div className="askguru-progress-dot one"></div>
-      <div className="askguru-progress-dot two"></div>
-      <div className="askguru-progress-dot three"></div>
+    <div className={styles.progress}>
+      <div className={`${styles.progressDot}`}></div>
+      <div className={`${styles.progressDot} ${styles.progressDotTwo}`}></div>
+      <div className={`${styles.progressDot} ${styles.progressDotThree}`}></div>
     </div>
   )
 }

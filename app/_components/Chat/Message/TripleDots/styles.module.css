@@ -1,0 +1,43 @@
+.progress {
+  display: grid;
+  width: 18px;
+  gap: 1px;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+
+@keyframes bubble {
+  0% {
+    width: 6px;
+    height: 6px;
+  }
+  50% {
+    width: 4px;
+    height: 4px;
+  }
+  100% {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+.progressDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  animation-iteration-count: infinite;
+  animation-name: bubble;
+  animation-duration: 1.2s;
+  transition: all 0.6s;
+}
+
+.progressDotTwo {
+  animation-delay: 0.2s;
+}
+.progressDotThree {
+  animation-delay: 0.4s;
+}
