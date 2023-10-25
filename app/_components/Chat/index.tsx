@@ -2,6 +2,7 @@ import Compose from "./Compose"
 import Footer from "./Footer"
 import Header from "./Header"
 import Message from "./Message"
+import styles from "./styles.module.css"
 import { Configuration, MessageType } from "@/app/_interfaces"
 import AskguruApi from "@/app/_lib/api"
 import localizations from "@/app/_lib/localization"
@@ -18,6 +19,7 @@ export default function Chat({
   setIsCollapsed: (value: boolean) => void
   isMobile: boolean
 }) {
+  const [isExpanded, setIsExpanded] = useState(false)
   const [messages, setMessages] = useState<MessageType[]>([])
   const [composeValue, setComposeValue] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -55,27 +57,7 @@ export default function Chat({
   }
 
   function handleResizeClick() {
-    const wrapper = document.getElementById("ask-guru-wrapper")
-    if (wrapper) {
-      if (wrapper.style.height !== "650px") {
-        wrapper.style.maxHeight = "calc(100vh - 104px)"
-        wrapper.style.maxWidth = "calc(100vw - 32px)"
-
-        wrapper.style.minWidth = "auto"
-        wrapper.style.minHeight = "auto"
-
-        wrapper.style.width = "450px"
-        wrapper.style.height = "650px"
-      } else {
-        wrapper.style.maxWidth = "calc(100vw - 32px)"
-        wrapper.style.minWidth = "calc(100vw - 32px)"
-        wrapper.style.maxHeight = "calc(100vh - 104px)"
-        wrapper.style.minHeight = "calc(100vh - 104px)"
-
-        wrapper.style.width = "100%"
-        wrapper.style.height = "100%"
-      }
-    }
+    setIsExpanded(!isExpanded)
   }
 
   function checkForHumanHelp(messageText: string) {
@@ -176,7 +158,17 @@ export default function Chat({
   }
 
   return (
-    <div className="askguru-container">
+    <div
+      className={`${styles.chat} ${
+        isMobile
+          ? styles.chatMobile
+          : `${styles.chatDesktop} ${isExpanded ? styles.chatDesktopExpanded : styles.chatDesktopNormal}`
+      }`}
+      style={{
+        bottom: isMobile ? 0 : configuration.bottomIndent + 72, // 64 (height of the button) + 8 (indent)
+        right: isMobile ? 0 : configuration.rightIndent,
+      }}
+    >
       <Header
         configuration={configuration}
         onClearButtonClick={handleClearConversation}

@@ -1,15 +1,32 @@
 .chat {
   position: absolute;
-  bottom: 68px;
   right: 0px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
-  max-height: calc(100vh - 104px);
-  max-width: calc(100vw - 32px);
-  width: 450px;
-  height: 650px;
   opacity: 1;
   transition: all 0.25s ease-in-out 0s;
-  border-radius: 16px;
   overflow: hidden;
   display: block;
+}
+
+.chatDesktop {
+  bottom: 68px;
+  max-height: calc(100vh - 104px);
+  max-width: calc(100vw - 32px);
+  border-radius: 16px;
+}
+
+.chatDesktopNormal {
+  width: 450px;
+  height: 650px;
+}
+
+.chatDesktopExpanded {
+  width: calc(100vw - 32px);
+  height: calc(100vh - 104px);
+}
+
+.chatMobile {
+  bottom: 0px;
+  width: 100vw;
+  height: 100vh;
 }
