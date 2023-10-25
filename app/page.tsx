@@ -2,7 +2,7 @@
 
 import Chat from "@/app/_components/Chat"
 import PopupButton from "@/app/_components/PopupButton"
-import { AskguruConfiguration, Configuration } from "@/app/_interfaces"
+import { AskguruConfiguration, Configuration, MessageType } from "@/app/_interfaces"
 import AskguruApi from "@/app/_lib/api"
 import { defaultAskguruConfiguration, defaultConfiguration } from "@/app/configuration"
 import { useSearchParams } from "next/navigation"
@@ -11,9 +11,15 @@ import { useEffect, useState } from "react"
 const mobileWindowWidthThreshold = 450
 
 export default function Home() {
+  // State of Chat component live here to save it
+  // during collapses
   const [isCollapsed, setIsCollapsed] = useState(true)
   const [hasInteracted, setHasInteracted] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [messages, setMessages] = useState<MessageType[]>([])
+  const [composeValue, setComposeValue] = useState("")
+  const [isMessageLoading, setIsMessageLoading] = useState(false)
 
   const configuration: Configuration = {
     ...defaultConfiguration,
@@ -27,12 +33,26 @@ export default function Home() {
 
   const askguruAPI = new AskguruApi({ askguruConfiguration })
 
+  const messagesInitialState: MessageType[] = [{ role: "assistant", content: configuration.welcomeMessage }]
+
   function handleResize() {
     setIsMobile(window.innerWidth < mobileWindowWidthThreshold)
   }
 
+  function handleClearConversation() {
+    setMessages(messagesInitialState)
+    localStorage.setItem("askguru-chat-history", JSON.stringify(messagesInitialState))
+  }
+
   useEffect(() => {
     console.log("AskGuru chat pop-up configuration:", configuration)
+
+    const messagesHistory = localStorage.getItem("askguru-chat-history")
+    if (messagesHistory) {
+      setMessages(JSON.parse(messagesHistory))
+    } else {
+      setMessages(messagesInitialState)
+    }
 
     if (!localStorage.getItem("askguru-has-interacted")) {
       setHasInteracted(false)
@@ -63,6 +83,15 @@ export default function Home() {
           askguruAPI={askguruAPI}
           setIsCollapsed={setIsCollapsed}
           isMobile={isMobile}
+          isExpanded={isExpanded}
+          setIsExpanded={setIsExpanded}
+          messages={messages}
+          setMessages={setMessages}
+          composeValue={composeValue}
+          setComposeValue={setComposeValue}
+          isMessageLoading={isMessageLoading}
+          setIsMessageLoading={setIsMessageLoading}
+          handleClearConversation={handleClearConversation}
         />
       )}
     </>

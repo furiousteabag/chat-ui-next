@@ -6,36 +6,39 @@ import styles from "./styles.module.css"
 import { Configuration, MessageType } from "@/app/_interfaces"
 import AskguruApi from "@/app/_lib/api"
 import localizations from "@/app/_lib/localization"
-import { FormEvent, useEffect, useRef, useState } from "react"
+import { FormEvent, useEffect, useRef } from "react"
 
 export default function Chat({
   configuration,
   askguruAPI,
   setIsCollapsed,
   isMobile,
+  isExpanded,
+  setIsExpanded,
+  messages,
+  setMessages,
+  composeValue,
+  setComposeValue,
+  isMessageLoading,
+  setIsMessageLoading,
+  handleClearConversation,
 }: {
   configuration: Configuration
   askguruAPI: AskguruApi
   setIsCollapsed: (value: boolean) => void
   isMobile: boolean
+  isExpanded: boolean
+  setIsExpanded: (value: boolean) => void
+  messages: MessageType[]
+  setMessages: (value: MessageType[]) => void
+  composeValue: string
+  setComposeValue: (value: string) => void
+  isMessageLoading: boolean
+  setIsMessageLoading: (value: boolean) => void
+  handleClearConversation: () => void
 }) {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const [messages, setMessages] = useState<MessageType[]>([])
-  const [composeValue, setComposeValue] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-
-  const messagesInitialState: MessageType[] = [{ role: "assistant", content: configuration.welcomeMessage }]
   const regexPattern = new RegExp(askguruAPI.sourcePattern)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const messagesHistory = localStorage.getItem("askguru-chat-history")
-    if (messagesHistory) {
-      setMessages(JSON.parse(messagesHistory))
-    } else {
-      setMessages(messagesInitialState)
-    }
-  }, [])
 
   useEffect(() => {
     scrollToBottom()
@@ -45,11 +48,6 @@ export default function Chat({
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
     }
-  }
-
-  function handleClearConversation() {
-    localStorage.setItem("askguru-chat-history", JSON.stringify(messagesInitialState))
-    setMessages(messagesInitialState)
   }
 
   function handleCollapseButtonClick() {
@@ -70,7 +68,7 @@ export default function Chat({
   async function handleSubmitUserMessage(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    if (isLoading || composeValue === undefined || composeValue === null || composeValue.length === 0) {
+    if (isMessageLoading || composeValue === undefined || composeValue === null || composeValue.length === 0) {
       return
     }
 
@@ -87,7 +85,7 @@ export default function Chat({
 
     setComposeValue("")
     setMessages(newMessagesAssistant)
-    setIsLoading(true)
+    setIsMessageLoading(true)
 
     let completeAnswer = ""
     let retrievedSources: any[] = []
@@ -148,7 +146,7 @@ export default function Chat({
         newMessages[messages.length - 1].content = localizations[configuration.lang].errorMessage
         setMessages([...newMessages])
       }
-      setIsLoading(false)
+      setIsMessageLoading(false)
       answerStream.close()
       localStorage.setItem("askguru-chat-history", JSON.stringify(messages))
       setTimeout(() => {
@@ -184,7 +182,7 @@ export default function Chat({
               selectedColor={"#" + configuration.color}
               isFirst={index === 0}
               isLast={messages.length - 1 === index}
-              isLoading={isLoading}
+              isLoading={isMessageLoading}
               askguruAPI={askguruAPI}
             />
           )
@@ -195,7 +193,7 @@ export default function Chat({
         configuration={configuration}
         composeValue={composeValue}
         setComposeValue={setComposeValue}
-        isLoading={isLoading}
+        isLoading={isMessageLoading}
         onSubmitUserMessage={handleSubmitUserMessage}
         onResizeClick={handleResizeClick}
         isMobile={isMobile}
