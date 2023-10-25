@@ -33,7 +33,11 @@ export default function PopupButton({
   return (
     <button
       className={styles.button}
-      style={{ backgroundColor: "#" + configuration.color }}
+      style={{
+        backgroundColor: "#" + configuration.color,
+        bottom: configuration.bottomIndent,
+        right: configuration.rightIndent,
+      }}
       onClick={() => handleClick()}
     >
       <Image

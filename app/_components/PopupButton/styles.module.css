@@ -11,6 +11,7 @@
   transition: all 0.25s ease-in-out 0s;
   opacity: 1;
   cursor: pointer;
+  position: absolute;
   /* box-shadow: 0px 2px 2px #888888; */
 }
 
