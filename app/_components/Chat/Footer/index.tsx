@@ -5,9 +5,9 @@ export default function Footer() {
   return (
     <div className={styles.footer}>
       <a className={styles.footerContent} href="https://askguru.ai" target="_blank" rel="noopener noreferrer">
-        Powered by{" "}
+        Powered by
         <Image
-          style={{ height: "auto" }}
+          style={{ objectFit: "contain", marginLeft: "7px" }}
           alt="logo"
           src="/images/chat/footer/askguru-logo-full.svg"
           height={10}
