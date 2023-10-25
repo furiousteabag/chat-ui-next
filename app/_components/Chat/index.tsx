@@ -134,21 +134,23 @@ export default function Chat({
           let newMessages: MessageType[] = [...newMessagesAssistant]
           newMessages[newMessagesAssistant.length - 1].content = completeAnswer
           newMessages[newMessagesAssistant.length - 1].requestId = request_id
-          setMessages([...newMessages])
+          setMessages(newMessages)
         }
       } catch (e) {
         console.log(e)
       }
     })
     answerStream.addEventListener("error", (_event) => {
+      let newMessages: MessageType[] = [...newMessagesAssistant]
       if (!completeAnswer) {
-        let newMessages: MessageType[] = [...messages]
-        newMessages[messages.length - 1].content = localizations[configuration.lang].errorMessage
-        setMessages([...newMessages])
+        newMessages[newMessagesAssistant.length - 1].content = localizations[configuration.lang].errorMessage
+        setMessages(newMessages)
+      } else {
+        newMessages[newMessagesAssistant.length - 1].content = completeAnswer
       }
       setIsMessageLoading(false)
       answerStream.close()
-      localStorage.setItem("askguru-chat-history", JSON.stringify(messages))
+      localStorage.setItem("askguru-chat-history", JSON.stringify(newMessages))
       setTimeout(() => {
         scrollToBottom()
       }, 25)
