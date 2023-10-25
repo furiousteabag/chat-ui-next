@@ -46,7 +46,7 @@ export default function PopupButton({
       />
       {configuration.addUnreadDot && !hasInteracted && <div className={styles.unreadDot} />}
       {configuration.popupMessage && !hasInteracted && (
-        <div className={styles.popupWidget} dangerouslySetInnerHTML={{ __html: configuration.popupMessage }} />
+        <p className={styles.popupWidget} dangerouslySetInnerHTML={{ __html: configuration.popupMessage }} />
       )}
     </button>
   )
