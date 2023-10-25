@@ -38,6 +38,7 @@ export default function Compose({
       <form style={{ display: "flex", gap: "8px", width: "100%" }} onSubmit={(event) => onSubmitUserMessage(event)}>
         <input
           type="text"
+          name="Query Field"
           value={composeValue}
           onChange={(e) => setComposeValue(e.target.value)}
           placeholder={localizations[configuration.lang].inputPlaceholder}
