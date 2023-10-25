@@ -74,8 +74,8 @@ export default function Message({
                 <ReactionButton reaction="DISLIKE" hoverColor={selectedColor} onButtonClick={handleReaction} />
               </div>
             ) : (
-              <div className="askguru-feedback-thanks">
-                <Image alt="" src="/images/chat/message/feedback-submit-tick.svg" width={28} height={28} />
+              <div className={styles.messageFeedbackThanks}>
+                <Image alt="" src="/images/chat/message/feedback-submit-tick.svg" width={18} height={18} />
                 Thanks for submitting your feedback!
               </div>
             )}
