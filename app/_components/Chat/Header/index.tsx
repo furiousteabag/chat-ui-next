@@ -35,7 +35,7 @@ export default function Header({
           aria-label={localizations[configuration.lang].clear}
         >
           <Image alt="" src="/images/chat/header/refresh-icon.svg" height={18} width={18} />
-          <div className={styles.tooltip}>{localizations[configuration.lang].clear}</div>
+          <div className="tooltip">{localizations[configuration.lang].clear}</div>
         </button>
         {isMobile && (
           <button
@@ -44,7 +44,7 @@ export default function Header({
             aria-label={localizations[configuration.lang].collapse}
           >
             <Image alt="" src="/images/chat/header/close-icon.svg" height={18} width={18} />
-            <div className={styles.tooltip}>{localizations[configuration.lang].collapse}</div>
+            <div className="tooltip">{localizations[configuration.lang].collapse}</div>
           </button>
         )}
       </div>

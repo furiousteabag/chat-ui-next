@@ -34,23 +34,3 @@
 /*   background-color: transparent; */
 /*   cursor: pointer; */
 /* } */
-
-.tooltip {
-  background-color: #000;
-  color: white;
-  font-size: 12px;
-  border-radius: 8px;
-  box-sizing: border-box;
-  padding: 6px 9px;
-  opacity: 1;
-  display: none;
-  position: absolute;
-  bottom: -35px;
-  left: -25px;
-  white-space: nowrap;
-  transition: 0.1s;
-}
-
-button:hover .tooltip {
-  display: block;
-}
