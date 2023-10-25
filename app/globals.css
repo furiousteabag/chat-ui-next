@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.askguruApp {
+body {
   position: fixed;
   bottom: 16px;
   right: 16px;

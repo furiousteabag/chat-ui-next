@@ -41,7 +41,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="askguruApp">
+    <>
       {configuration.token && (!isMobile || isCollapsed) && (
         <PopupButton
           configuration={configuration}
@@ -58,6 +58,6 @@ export default function Home() {
           isMobile={isMobile}
         />
       )}
-    </div>
+    </>
   )
 }
