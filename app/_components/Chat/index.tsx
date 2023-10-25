@@ -65,10 +65,10 @@ export default function Chat({
     return false
   }
 
-  async function handleSubmitUserMessage(event: FormEvent<HTMLFormElement>) {
+  function handleSubmitUserMessage(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    if (isMessageLoading || composeValue === undefined || composeValue === null || composeValue.length === 0) {
+    if (isMessageLoading || !composeValue) {
       return
     }
 
@@ -105,7 +105,7 @@ export default function Chat({
           if (sources.length === 0) {
             askguruAPI.logEvent({
               eventType: "POPUP_NO_ANSWER_SERVER",
-              eventContext: { chat: messages },
+              eventContext: { chat: newMessagesUser },
             })
           }
 
@@ -131,9 +131,9 @@ export default function Chat({
             completeAnswer = completeAnswer.replace(regexPattern, `[[${idx}]](${link})`)
           }
 
-          let newMessages: MessageType[] = [...messages]
-          newMessages[messages.length - 1].content = completeAnswer
-          newMessages[messages.length - 1].requestId = request_id
+          let newMessages: MessageType[] = [...newMessagesAssistant]
+          newMessages[newMessagesAssistant.length - 1].content = completeAnswer
+          newMessages[newMessagesAssistant.length - 1].requestId = request_id
           setMessages([...newMessages])
         }
       } catch (e) {
