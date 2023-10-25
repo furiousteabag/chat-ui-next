@@ -15,27 +15,33 @@ export default function Header({
   onCollapseButtonClick: () => void
 }) {
   return (
-    <div className="askguru-header">
-      <div className="askguru-ai-heading">
+    <div className={styles.header}>
+      <div className={styles.heading}>
         {!configuration.whitelabel && (
-          <Image alt="" src="/images/chat/header/askguru-logo.svg" height={18} width={18} />
+          <Image
+            alt=""
+            src="/images/chat/header/askguru-logo.svg"
+            height={36}
+            width={36}
+            style={{ objectFit: "contain" }}
+          />
         )}
         {configuration.windowHeading}
       </div>
-      <div className="askguru-header-buttons">
+      <div className={styles.buttons}>
         <button
-          className="askguru-small-btn askguru-ai-clear"
-          aria-label={localizations[configuration.lang].clear}
+          className={`small-btn`}
           onClick={() => onClearButtonClick()}
+          aria-label={localizations[configuration.lang].clear}
         >
           <Image alt="" src="/images/chat/header/refresh-icon.svg" height={18} width={18} />
           <div className={styles.tooltip}>{localizations[configuration.lang].clear}</div>
         </button>
         {isMobile && (
           <button
-            className="askguru-small-btn askguru-ai-close"
-            id="askguru-collapse"
+            className={`small-btn`}
             onClick={() => onCollapseButtonClick()}
+            aria-label={localizations[configuration.lang].collapse}
           >
             <Image alt="" src="/images/chat/header/close-icon.svg" height={18} width={18} />
             <div className={styles.tooltip}>{localizations[configuration.lang].collapse}</div>
