@@ -10,6 +10,8 @@ export interface Configuration {
   windowHeading: string
   welcomeMessage: string
   addUnreadDot: boolean
+  bottomIndent: number
+  rightIndent: number
 }
 
 export type AskguruApiVersion = "v1" | "v2"

@@ -11,6 +11,8 @@ export const defaultConfiguration: Configuration = {
   lang: "en-US",
   windowHeading: "Chat with AI Assistant",
   welcomeMessage: "Hi, ask me anything",
+  bottomIndent: 24,
+  rightIndent: 24,
 }
 
 export const defaultAskguruConfiguration: AskguruConfiguration = {

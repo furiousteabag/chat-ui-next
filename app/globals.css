@@ -3,8 +3,5 @@
 @tailwind utilities;
 
 body {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
   z-index: 10;
 }
