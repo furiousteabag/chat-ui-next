@@ -12,6 +12,7 @@ export default function Footer() {
           src="/images/chat/footer/askguru-logo-full.svg"
           height={10}
           width={100}
+          priority={true}
         />
       </a>
     </div>

@@ -29,10 +29,12 @@ export default function Compose({
           className="small-btn"
           onClick={() => onResizeClick()}
         >
-          <Image alt="" src="/images/chat/message/compose-resize.svg" width={24} height={24} />
-          <div className="tooltip" style={{ bottom: 25 }}>
-            {localizations[configuration.lang].resize}
-          </div>
+          <Image alt="" src="/images/chat/message/compose-resize.svg" width={24} height={24} priority={true} />
+          {!isMobile && (
+            <div className="tooltip" style={{ bottom: 25 }}>
+              {localizations[configuration.lang].resize}
+            </div>
+          )}
         </button>
       )}
       <form style={{ display: "flex", gap: "8px", width: "100%" }} onSubmit={(event) => onSubmitUserMessage(event)}>
@@ -51,10 +53,12 @@ export default function Compose({
           disabled={isLoading}
           className="small-btn"
         >
-          <Image alt="" src="/images/chat/message/compose-send.svg" width={28} height={28} />
-          <div className="tooltip" style={{ bottom: 40 }}>
-            {localizations[configuration.lang].send}
-          </div>
+          <Image alt="" src="/images/chat/message/compose-send.svg" width={28} height={28} priority={true} />
+          {!isMobile && (
+            <div className="tooltip" style={{ bottom: 40 }}>
+              {localizations[configuration.lang].send}
+            </div>
+          )}
         </button>
       </form>
     </div>

@@ -75,7 +75,13 @@ export default function Message({
               </div>
             ) : (
               <div className={styles.messageFeedbackThanks}>
-                <Image alt="" src="/images/chat/message/feedback-submit-tick.svg" width={18} height={18} />
+                <Image
+                  alt=""
+                  src="/images/chat/message/feedback-submit-tick.svg"
+                  width={18}
+                  height={18}
+                  priority={true}
+                />
                 Thanks for submitting your feedback!
               </div>
             )}

@@ -25,12 +25,12 @@ export default function ReactionButton({
     >
       {reaction === "LIKE" ? (
         <>
-          <Image alt="" src="/images/chat/message/feedback-like.svg" height={18} width={18} />
+          <Image alt="" src="/images/chat/message/feedback-like.svg" height={18} width={18} priority={true} />
           Like
         </>
       ) : (
         <>
-          <Image alt="" src="/images/chat/message/feedback-dislike.svg" height={18} width={18} />
+          <Image alt="" src="/images/chat/message/feedback-dislike.svg" height={18} width={18} priority={true} />
           Dislike
         </>
       )}
