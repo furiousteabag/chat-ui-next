@@ -25,6 +25,10 @@
   transition: transform 0.1s;
 }
 
+.button:focus {
+  outline: none;
+}
+
 .unreadDot {
   width: 16px;
   height: 16px;
