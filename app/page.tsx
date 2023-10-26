@@ -10,6 +10,15 @@ import { useEffect, useState } from "react"
 
 const mobileWindowWidthThreshold = 450
 
+function parseSearchParams(params: { [k: string]: string }): Partial<Configuration> {
+  const parsed: Partial<Configuration> = { ...params }
+  if (params.whitelabel !== undefined) parsed.whitelabel = params.whitelabel.toLowerCase() === "true"
+  if (params.addUnreadDot !== undefined) parsed.addUnreadDot = params.addUnreadDot.toLowerCase() === "true"
+  if (params.bottomIndent !== undefined) parsed.bottomIndent = parseInt(params.bottomIndent)
+  if (params.rightIndent !== undefined) parsed.rightIndent = parseInt(params.rightIndent)
+  return parsed
+}
+
 export default function Home() {
   // State of Chat component live here to save it
   // during collapses
@@ -23,7 +32,7 @@ export default function Home() {
 
   const configuration: Configuration = {
     ...defaultConfiguration,
-    ...Object.fromEntries(useSearchParams()),
+    ...parseSearchParams(Object.fromEntries(useSearchParams())),
   }
 
   const askguruConfiguration: AskguruConfiguration = {
