@@ -39,6 +39,7 @@ export default function Compose({
         <input
           type="text"
           name="Query Field"
+          autoComplete="off"
           value={composeValue}
           onChange={(e) => setComposeValue(e.target.value)}
           placeholder={localizations[configuration.lang].inputPlaceholder}
