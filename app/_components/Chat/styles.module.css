@@ -1,6 +1,5 @@
 .chat {
   position: absolute;
-  right: 0px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
   opacity: 1;
   transition: all 0.25s ease-in-out 0s;
@@ -26,7 +25,6 @@
 }
 
 .chatMobile {
-  bottom: 0px;
   width: 100vw;
   height: 100vh;
   height: 100%;
