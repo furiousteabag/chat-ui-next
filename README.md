@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chat Pop-up AskGuru Client
 
-## Getting Started
+A pop-up which embeds inside a website and answer questions.
 
-First, run the development server:
+## Usage
+
+To start using chat on the website, insert `iframe` with params in `<body>` at the root of the website. You can pass configuration parameters with query url. List of available parameters and their default values available in `defaultConfiguration` variable in [configuration.ts](./app/configuration.ts). The only mandatory parameter is `token`.
+
+Example insertion of widget:
+
+```html
+<iframe
+  src="https://chat-popup.askguru.ai/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZW5kb3IiOiJhc2tndXJ1cHVibGljIiwib3JnYW5pemF0aW9uIjoiYXNrZ3VydSIsInNlY3VyaXR5X2dyb3VwcyI6W119.bR2GxUtV3zeER-s95AsV3UBrssa_ufP7Q1EalkBO5Kw"
+  style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+/>
+```
+
+It is deployed on [app.askguru.ai](https://app.askguru.ai/) and trained on [askguru.ai](https://www.askguru.ai/) website content.
+
+## Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To serve via next.js server, do:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+To serve via static files, add `output: "export"` to `nextConfig` in [next.config.js](./next.config.js) and run:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+It will result with `./out` folder which can be served via webserver (e.g. nginx).
