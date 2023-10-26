@@ -10,7 +10,6 @@
 }
 
 .chatDesktop {
-  bottom: 68px;
   max-height: calc(100vh - 104px);
   max-width: calc(100vw - 32px);
   border-radius: 16px;
