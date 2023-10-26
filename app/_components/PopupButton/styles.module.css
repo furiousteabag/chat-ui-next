@@ -15,6 +15,16 @@
   /* box-shadow: 0px 2px 2px #888888; */
 }
 
+.button:hover {
+  transform: scale(1.05);
+  transition: transform 0.1s ease-in-out 0s;
+}
+
+.button:active {
+  transform: scale(0.9);
+  transition: transform 0.1s;
+}
+
 .unreadDot {
   width: 16px;
   height: 16px;
