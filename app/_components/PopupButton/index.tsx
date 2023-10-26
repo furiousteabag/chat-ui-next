@@ -2,7 +2,7 @@ import styles from "./styles.module.css"
 import { Configuration } from "@/app/_interfaces"
 import AskguruApi from "@/app/_lib/api"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 export default function PopupButton({
   configuration,
