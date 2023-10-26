@@ -9,8 +9,8 @@
 }
 
 .chatDesktop {
-  max-height: calc(100vh - 104px);
-  max-width: calc(100vw - 32px);
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 112px);
   border-radius: 16px;
 }
 
@@ -20,8 +20,8 @@
 }
 
 .chatDesktopExpanded {
-  width: calc(100vw - 32px);
-  height: calc(100vh - 104px);
+  width: calc(100vw - 40px);
+  height: calc(100vh - 112px);
 }
 
 .chatMobile {
