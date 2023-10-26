@@ -68,10 +68,6 @@ export default function Chat({
   function handleSubmitUserMessage(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    if (isMessageLoading || !composeValue) {
-      return
-    }
-
     if (checkForHumanHelp(composeValue)) {
       askguruAPI.logEvent({
         eventType: "POPUP_NO_ANSWER_CLIENT",

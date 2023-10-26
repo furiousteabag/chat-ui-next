@@ -50,7 +50,7 @@ export default function Compose({
         <button
           aria-label={localizations[configuration.lang].send}
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || !composeValue}
           className="small-btn"
         >
           <Image alt="" src="/images/chat/message/compose-send.svg" width={28} height={28} priority={true} />
