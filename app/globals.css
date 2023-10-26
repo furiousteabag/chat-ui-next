@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  z-index: 10;
-}
-
 .small-btn {
   position: relative;
 }
