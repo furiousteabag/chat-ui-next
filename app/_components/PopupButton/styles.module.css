@@ -29,6 +29,29 @@
   outline: none;
 }
 
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fadingImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* center the image */
+  transition: opacity 0.1s ease-in-out;
+  width: 100%; /* ensure the image takes the full width */
+  height: 100%; /* ensure the image takes the full height */
+}
+
+.hiddenImage {
+  opacity: 0;
+}
+
 .unreadDot {
   width: 16px;
   height: 16px;

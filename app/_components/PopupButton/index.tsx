@@ -40,13 +40,24 @@ export default function PopupButton({
       }}
       onClick={() => handleClick()}
     >
-      <Image
-        alt=""
-        src={isCollapsed ? configuration.popupIcon : "/images/popup/chevron.svg"}
-        width={64}
-        height={64}
-        priority={true}
-      />
+      <div className={styles.imageContainer}>
+        <Image
+          className={`${styles.fadingImage} ${!isCollapsed && styles.hiddenImage}`}
+          alt=""
+          src={configuration.popupIcon}
+          width={64}
+          height={64}
+          priority={true}
+        />
+        <Image
+          className={`${styles.fadingImage} ${isCollapsed && styles.hiddenImage}`}
+          alt=""
+          src={"/images/popup/chevron.svg"}
+          width={64}
+          height={64}
+          priority={true}
+        />
+      </div>
       {configuration.addUnreadDot && !hasInteracted && <div className={styles.unreadDot} />}
       {configuration.popupMessage && !hasInteracted && (
         <p className={styles.popupWidget} dangerouslySetInnerHTML={{ __html: configuration.popupMessage }} />
